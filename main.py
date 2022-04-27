@@ -1,6 +1,17 @@
 import random
 import telebot
 
+token = '' #токен у каждого свой индивидуальный
+
+bot = telebot.TeleBot(token)
+
+
+@bot.message_handler(content_types=['text']) # Специальный синтаксис, который указывает, какие именно сообщения будет обрабатывать определяемая дальше функция.
+def echo(message):
+    bot.send_message(message.chat.id, message.text) # Тело функции. Отправляем сообщение в тот же чат, откуда получили (message.chat.id) с тем же текстом (message.text).
+
+# Постоянно обращается к серверам телеграм
+bot.polling(none_stop=True) # отправка к серверам телеграмм используя наш токен
 
 
 HELP = """
